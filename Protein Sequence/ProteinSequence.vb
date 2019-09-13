@@ -1,4 +1,4 @@
-﻿
+﻿'genotype object for expressing a population
 Public Structure genotype
     Dim Fitness As Integer
     Dim X() As Integer ' 1 to 64
@@ -9,6 +9,9 @@ Public Class ProteinSequence
     Private Sub ProteinSequence_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    'Important global variables
+    '**********************************************************************
 
     Public ValidFolding As Integer
     Public MutateCollision As Integer
@@ -24,6 +27,9 @@ Public Class ProteinSequence
     Public CurrentPositionOfBestCollection As Integer = 0
     Public CurrentPosOfNewPop As Integer
 
+    '***********************************************************************
+
+    'Runs genetic algorithm based search for the best fitness upon selection of start
     Private Sub Start_Click(sender As Object, e As EventArgs) Handles Start.Click
         'Collection of important variables taken from GUI
         Dim input As New List(Of String)()
@@ -86,9 +92,7 @@ Public Class ProteinSequence
 
             'Save elites: Pop2 <- Pop1
             SaveElites(eliteRate, populationSize)
-            'For m = 0 To populationSize - 1
-            '   newPopulation(m) = population(m)
-            'Next m
+
             CrossOverHandler(populationSize, aminoArray(j), crossOverRate)
 
             'Mutation
@@ -109,6 +113,7 @@ MyJump:
     '********************************************************************
     'Find below a collection of methods for genetic algoritm techniques
 
+    'Initialize random population
     Private Sub Initialize()
         For i = 0 To txtPopulationSize.Text - 1
             ValidFolding = 0
@@ -266,7 +271,7 @@ MyJump3:
         Return 0
     End Function
 
-    'Random orientation based on 
+    'Random orientation for newPopulation
     Private Function RandomOrientationNewPop(m As Long)
         Dim PreviousDirection, PresentDirection As Long
         Dim i, temp1, temp2, temp3, X, Y, j, Flag, Step2 As Long
@@ -448,9 +453,6 @@ MyJump3:
                 End If
             Next j
         Next i
-
-        'population(n).Fitness = F
-        'ComputeFullFitnessNewPop = F
         Return F
     End Function
 
@@ -478,7 +480,7 @@ MyJump3:
     End Sub
 
     'Conduct mutation based on rotation about a single point on a single random non-elite sequence
-    'i as random sequence from pop1. n as middle of sequence for rotation.
+    'i as random sequence from pop1. n as random spot of sequence for rotation.
     Private Function Mutation(i As Long, n As Integer) As Long
         Dim id As Long
         Dim a As Long
@@ -796,6 +798,7 @@ MyOut3:
         Return crossOvr
     End Function
 
+    'Confirms valid SAW after crossover
     Function CalculateThePath(i As Long, n As Integer, id As Long)
         Dim correctPath = 1
         Dim k, z
@@ -1046,6 +1049,7 @@ MyOut3:
         Return 0
     End Function
 
+    'Handle next sequence click event
     Private Sub btnNextSequence_Click(sender As Object, e As EventArgs) Handles btnNextSequence.Click
         CurrentPositionOfInput = CurrentPositionOfInput + 1
         If (CurrentPositionOfInput >= EndPositionOfInput) Then
@@ -1055,6 +1059,7 @@ MyOut3:
         lblSequence1.Text = "Sequence: " + Str(CurrentPositionOfInput + 1) + "/" + Str(EndPositionOfInput)
     End Sub
 
+    'Handles next drawing clickc event
     Private Sub btnNextDrawing_Click(sender As Object, e As EventArgs) Handles btnNextDrawing.Click
         Dim input As New List(Of String)()
         input = ReadInput()

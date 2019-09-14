@@ -130,7 +130,7 @@ Partial Class ProteinSequence
         Me.txtMaximumIteration.Name = "txtMaximumIteration"
         Me.txtMaximumIteration.Size = New System.Drawing.Size(66, 22)
         Me.txtMaximumIteration.TabIndex = 11
-        Me.txtMaximumIteration.Text = "9000000"
+        Me.txtMaximumIteration.Text = "100"
         '
         'txtMutationRate
         '
@@ -139,7 +139,7 @@ Partial Class ProteinSequence
         Me.txtMutationRate.Name = "txtMutationRate"
         Me.txtMutationRate.Size = New System.Drawing.Size(66, 26)
         Me.txtMutationRate.TabIndex = 10
-        Me.txtMutationRate.Text = "0.5"
+        Me.txtMutationRate.Text = "0.1"
         '
         'txtEliteRate
         '
@@ -157,7 +157,7 @@ Partial Class ProteinSequence
         Me.txtCrossOverRate.Name = "txtCrossOverRate"
         Me.txtCrossOverRate.Size = New System.Drawing.Size(66, 26)
         Me.txtCrossOverRate.TabIndex = 8
-        Me.txtCrossOverRate.Text = "1.00"
+        Me.txtCrossOverRate.Text = "0.8"
         '
         'txtPopulationSize
         '
